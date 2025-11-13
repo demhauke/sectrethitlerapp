@@ -23,9 +23,11 @@ globalgame="*res://globalgame.gd"
 
 window/size/viewport_width=1080
 window/size/viewport_height=1920
-window/size/window_width_override=360
-window/size/window_height_override=640
 window/stretch/mode="canvas_items"
+
+[global_group]
+
+PlayerSettingsListElement=""
 
 [rendering]
 
