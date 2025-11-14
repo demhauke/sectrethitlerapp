@@ -5,3 +5,4 @@ class_name Player
 
 
 @export_enum("Liberal", "Faschist", "Hitler") var role: int
+var name: String = ""

@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2mbyu85od87j"]
+[gd_scene load_steps=2 format=3 uid="uid://d2mbyu85od87j"]
 
 [ext_resource type="Script" uid="uid://d1j88tbypx74s" path="res://scripts/settings.gd" id="1_r6d6q"]
-[ext_resource type="PackedScene" uid="uid://dcu22xfsnoheg" path="res://scenes/PlayerSettings.tscn" id="2_r6d6q"]
 
 [node name="Settings" type="Control" groups=["PlayerSettingsListElement"]]
 layout_mode = 3
@@ -12,21 +11,114 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r6d6q")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." groups=["PlayerSettingsListElement"]]
-custom_minimum_size = Vector2(0, 100)
+[node name="GUIContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.6565104
-offset_top = -50.5
-offset_bottom = 50.5
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
+
+[node name="SettingsContainer" type="VBoxContainer" parent="GUIContainer"]
+layout_mode = 2
+
+[node name="LiberalPanel" type="Panel" parent="GUIContainer/SettingsContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUIContainer/SettingsContainer/LiberalPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -57.5
+offset_top = -15.5
+offset_right = 57.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="-" type="Button" parent="GUIContainer/SettingsContainer/LiberalPanel/HBoxContainer"]
+layout_mode = 2
+text = "-"
+
+[node name="Label" type="Label" parent="GUIContainer/SettingsContainer/LiberalPanel/HBoxContainer"]
+layout_mode = 2
+text = "Liberals: 5"
+
+[node name="+" type="Button" parent="GUIContainer/SettingsContainer/LiberalPanel/HBoxContainer"]
+layout_mode = 2
+text = "+"
+
+[node name="FascismPanel" type="Panel" parent="GUIContainer/SettingsContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUIContainer/SettingsContainer/FascismPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -57.5
+offset_top = -15.5
+offset_right = 57.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="-" type="Button" parent="GUIContainer/SettingsContainer/FascismPanel/HBoxContainer"]
+layout_mode = 2
+text = "-"
+
+[node name="Label" type="Label" parent="GUIContainer/SettingsContainer/FascismPanel/HBoxContainer"]
+layout_mode = 2
+text = "Fascist: 3"
+
+[node name="+" type="Button" parent="GUIContainer/SettingsContainer/FascismPanel/HBoxContainer"]
+layout_mode = 2
+text = "+"
+
+[node name="SettingsPanel" type="Panel" parent="GUIContainer/SettingsContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUIContainer/SettingsContainer/SettingsPanel"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.5
+offset_top = -15.5
+offset_right = 173.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckButton" type="CheckButton" parent="GUIContainer/SettingsContainer/SettingsPanel/HBoxContainer"]
+layout_mode = 2
+button_pressed = true
+keep_pressed_outside = true
+text = "Hitler does not know the other fascists"
+
+[node name="PlayerListContainer" type="VBoxContainer" parent="GUIContainer" groups=["PlayerSettingsListElement"]]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="PlayerSettingsList" parent="VBoxContainer" instance=ExtResource("2_r6d6q")]
+[node name="startButton" type="Button" parent="GUIContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "Start Game"
 
-[node name="PlayerSettingsList2" parent="VBoxContainer" instance=ExtResource("2_r6d6q")]
-layout_mode = 2
+[connection signal="pressed" from="GUIContainer/SettingsContainer/LiberalPanel/HBoxContainer/-" to="." method="libs_minus_pressed"]
+[connection signal="pressed" from="GUIContainer/SettingsContainer/LiberalPanel/HBoxContainer/+" to="." method="libs_plus_pressed"]
+[connection signal="pressed" from="GUIContainer/SettingsContainer/FascismPanel/HBoxContainer/-" to="." method="fasc_minus_pressed"]
+[connection signal="pressed" from="GUIContainer/SettingsContainer/FascismPanel/HBoxContainer/+" to="." method="fasc_plus_pressed"]
